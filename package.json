@@ -1,0 +1,12 @@
+{
+  "name": "nodeapp",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "cd server && yarn install",
+    "start": "cd server && yarn start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

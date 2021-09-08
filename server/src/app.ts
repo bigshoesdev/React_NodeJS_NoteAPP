@@ -3,6 +3,7 @@ import "dotenv/config";
 import mongoose from "mongoose";
 import cors from "cors";
 import noteRoutes from "./routes";
+import path from "path";
 
 const app: Express = express();
 
@@ -12,6 +13,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(noteRoutes);
+app.use(express.static(path.join(__dirname, "build")));
+
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 
 const uri: string = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.u1dc3.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`;
 const options = {
